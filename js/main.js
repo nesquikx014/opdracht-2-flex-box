@@ -27,20 +27,20 @@ catchButton.onclick = function(event){
     pokemonGamePlayed = true;
     }
 }
-
+const nameText = document.getElementById("js--name");
 let inputField = document.getElementById("js--input");
 
 inputField.onkeyup = function(event){
-    let name = inputField.value;
-
     if(event.keyCode === 13){
+        let name = inputField.value;
         console.log(inputField.value);
-        let age = fetch("https://api.agify.io?name=")
+        let age = fetch("https://api.agify.io?name=" + name)
 .then(function(response){
     return response.json();
 })
 .then(function(echteData){
-    console.log(echteData);
+    inputField.style.display = "none";
+    nameText.innerText = echteData.age;
 });
 
     }
